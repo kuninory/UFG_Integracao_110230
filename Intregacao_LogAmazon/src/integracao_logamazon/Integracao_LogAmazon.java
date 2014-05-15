@@ -1,11 +1,15 @@
 package integracao_logamazon;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Integracao_LogAmazon {
     
     private String fonte;
     private String informacao;
+    private String instante;
 
     private Integracao_LogAmazon() {
     }
@@ -13,6 +17,7 @@ public class Integracao_LogAmazon {
     public Integracao_LogAmazon(String fonte, String informacao) throws FonteInvalidaException, InformacaoInvalidaException, UnsupportedEncodingException{
         setFonte(fonte);
         setInformacao(informacao);
+        setInstante();
     }
     
     public void setFonte(String fonte) throws FonteInvalidaException{
@@ -51,6 +56,16 @@ public class Integracao_LogAmazon {
 
     public String getInformacao() {
         return informacao;
+    }
+
+    public void setInstante() {
+        SimpleDateFormat formatUTC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+        formatUTC.setTimeZone(TimeZone.getTimeZone("UTC"));
+        this.instante= formatUTC.format(new Date());
+    }
+
+    public String getInstante() {
+        return instante;
     }
     
 }

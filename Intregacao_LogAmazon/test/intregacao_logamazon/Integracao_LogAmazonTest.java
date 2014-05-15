@@ -1,5 +1,6 @@
 package intregacao_logamazon;
 
+import com.sun.net.httpserver.Authenticator;
 import integracao_logamazon.FonteInvalidaException;
 import integracao_logamazon.InformacaoInvalidaException;
 import integracao_logamazon.Integracao_LogAmazon;
@@ -46,6 +47,7 @@ public class Integracao_LogAmazonTest {
             teste= new Integracao_LogAmazon(fonte, "informação");
             fail("Deixou a fonte ser 'null'.");
         } catch (Exception e) {
+            assertNull("Não deixou a fonte ser NULL.", fonte);
         }
     }
     
@@ -59,6 +61,7 @@ public class Integracao_LogAmazonTest {
             teste= new Integracao_LogAmazon(fonte, "informação");
             fail("Deixou a fonte ter mais de 100 caracteres.");
         } catch (Exception e) {
+            assertTrue("Não deixou ser mais de 100 caracteres.", fonte.length()>100);
         }
     }
     
@@ -71,6 +74,7 @@ public class Integracao_LogAmazonTest {
             teste= new Integracao_LogAmazon(fonte, informacao);
             fail("Deixou a informação ser 'null'.");
         } catch (Exception e) {
+            assertNull("Não deixou a informação ser NULL.", informacao);
         }
     }
     
@@ -125,6 +129,7 @@ public class Integracao_LogAmazonTest {
             teste= new Integracao_LogAmazon(fonte, informacao);
             fail("Deixou a informacao ter mais de 2KB.");
         } catch (Exception e) {
+            assertTrue("Não deixou a informação ter mais de 2KB.", true);
         }
     }
 }
